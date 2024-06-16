@@ -1,0 +1,55 @@
+version: 1
+
+disable_existing_loggers: no
+
+formatters:
+  colored:
+    (): colorlog.ColoredFormatter
+    format: "%(log_color)s%(asctime)s [%(levelname)8s] %(name)s: %(message)s"
+    log_colors:
+      DEBUG:    "bold_black"
+      INFO:     "bold_green"
+      WARNING:  "bold_yellow"
+      ERROR:    "bold_red"
+      CRITICAL: "bold_purple"
+  simple:
+    format: "%(asctime)s [%(levelname)8s] %(name)s: %(message)s"
+
+handlers:
+  consoleHandler:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: colored
+    stream: ext://sys.stdout
+  # applicationHandler:
+  #   class: logging.handlers.TimedRotatingFileHandler
+  #   level: INFO
+  #   formatter: simple
+  #   filename: ./log/application.log
+  #   when: D
+  #   backupCount: 7
+  # errorHandler:
+  #   class: logging.handlers.TimedRotatingFileHandler
+  #   level: ERROR
+  #   formatter: simple
+  #   filename: ./log/emergency.log
+  #   when: D
+  #   backupCount: 7
+
+loggers:
+  console:
+    level: DEBUG
+    handlers: [consoleHandler]
+    propagate: no
+  # application:
+  #   level: DEBUG
+  #   handlers: [consoleHandler, applicationHandler]
+  #   propagate: no
+  # emergency:
+  #   level: DEBUG
+  #   handlers: [consoleHandler, errorHandler]
+  #   propagate: no
+
+root:
+  handlers: [consoleHandler]
+  level: DEBUG

@@ -1,0 +1,21 @@
+[debug]
+# Compiler to use in debug mode
+compiler = "g++"
+# Flags to pass to the compiler
+flags = [
+    "-g",
+    "-fsanitize=address",
+    "-fsanitize=undefined",
+    "-Wall",
+    "-Wextra",
+]
+
+[release]
+# Compiler to use in release mode
+compiler = "g++"
+# Flags to pass to the compiler
+flags = [
+    "-O2",
+    "-Wall",
+    "-Wextra",
+]
