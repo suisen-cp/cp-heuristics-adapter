@@ -1,14 +1,20 @@
 # cp-heuristics-adapter
 
-AtCoder Heuristics Contest (AHC) の各種操作を自動化することを目標にしたツール。
+[![Python](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/CI.yml/badge.svg)](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/CI.yml)
 
-## 対応言語
+A tool aimed at automating various operations of AtCoder Heuristics Contest (AHC).
 
-- [x] C++
-- [x] Python
-- [ ] ...
+## Environment
 
-## インストール
+- OS
+  - [x] Linux
+  - [x] macOS
+  - [x] Windows
+- Python
+  - [x] 3.11
+  - [x] 3.12
+
+## Install
 
 ```bash
 cd /path/to/install
@@ -17,7 +23,7 @@ cd /path/to/install/cp-heuristics-adapter
 pip install .
 ```
 
-## アンインストール
+## Uninstall
 
 ```bash
 pip uninstall cp-heuristics-adapter
@@ -25,36 +31,38 @@ pip uninstall cp-heuristics-adapter
 
 ## Usage
 
-このツールを利用した AHC プロジェクトの構造のイメージ:
+The structure of an AHC project using this tool:
 
 ```text
 .
-├── .cp-heuristics-adapter  # 設定ファイル
-│   ├── cpp_config.toml    # C++ の設定ファイル
-│   └── py_config.toml     # Python の設定ファイル
-├── your_solver.cpp         # C++ のソルバー
-├── your_solver.py          # Python のソルバー
-├── in                      # 入力ファイル
+├── .cp-heuristics-adapter  # Configuration directory
+│   ├── cpp_config.toml    # C++ configuration file
+│   └── py_config.toml     # Python configuration file
+├── your_solver.cpp         # C++ solver
+├── your_solver.py          # Python solver
+├── in                      # Input files
 │   ├── 0000.txt
 │   ├── 0001.txt
 │   └── 0002.txt
-├── out                     # 出力ファイル
+├── out                     # Output files
 │   ├── 0000.txt
 │   ├── 0001.txt
 │   └── 0002.txt
-└── scores                  # スコアファイル
+└── scores                  # Score files
     ├── scores_20240617-000049.summary.txt
     ├── scores_20240617-000049.txt
     ├── scores_20240617-000223.summary.txt
     └── scores_20240617-000223.txt
 ```
 
+### Available languages
+
+- [x] C++
+- [x] Python
+
 ### `cp-heuristics-adapter init`
 
-プロジェクトを初期化する。
-
-- `-p`, `--path`: プロジェクトディレクトリのパス
-- `--overwrite`: 既存のファイルを上書きする
+Initialize a new project.
 
 ```text
 usage: cp-heuristics-adapter init [-h] [-p PATH] [--overwrite]
@@ -69,9 +77,7 @@ options:
 
 ### `cp-heuristics-adapter clean`
 
-プロジェクトをクリーンアップする。
-
-- `-p`, `--path`: プロジェクトディレクトリのパス
+Clean up the project.
 
 ```text
 usage: cp-heuristics-adapter clean [-h] [-p PATH]
@@ -85,23 +91,14 @@ options:
 
 ### `cp-heuristics-adapter run`
 
-プログラムを実行する。
+Run your solver.
 
-- `source`: ソースファイルのパス
-  - 通常のコードに加えて、**コマンドライン引数の 1 番目 (0-indexed) にスコアの出力先が与えられるので、そこにスコアを 1 行で出力する処理を追加する必要がある**。
-  - [C++ の例](templates/example_solver.cpp)
-  - [Python の例](templates/example_solver.py)
-- `number`: 実行するケースの数
-- `-b`, `--build-mode`: ビルドモード (デフォルトは `debug`)
-  - `debug`: デバッグビルド
-  - `release`: リリースビルド
-  - 例えば C++ の場合、`debug` モードでは `-fsanitize=address` を有効にし、`release` モードでは `-O2` を有効にするという使い分けを想定
-  - 各ビルドモードの設定は `.cp-heuristics-adapter` ディレクトリ内の設定ファイルに記述
-- `-t`, `--time-limit`: 実行時間制限 (デフォルトは 2.0 秒)
-- `-s`, `--score-type`: スコアの種類 (デフォルトは `plain`)
-  - `plain`: 通常のスコア
-  - `log`: スコアの対数
-  - 相対スコアの場合は `log` を使うとよい (と思われる)
+- In addition to your solver, **you need to add code to output the score in one line. The output destination is given as the first (0-indexed) command-line argument**.
+  - In C++, you can use `argv[1]` to get the output destination. Here is [an example C++ code](templates/example_solver.cpp).
+  - In Python, you can use `sys.argv[1]` to get the output destination. Here is an [example Python code](templates/example_solver.py).
+- You can specify the build mode (`debug` or `release`).
+  - For example, in C++, you can enable `-g -fsanitize=address` only in `debug` mode and `-O2` only in `release` mode.
+  - The settings for each build mode are to be written in the configuration files in the `.cp-heuristics-adapter` directory.
 
 ```text
 usage: cp-heuristics-adapter run [-h] [-b {debug,release}] [-t TIME_LIMIT] [-s {plain,log}] source number
