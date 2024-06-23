@@ -1,0 +1,13 @@
+name: ubuntu-latest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu-latest-build:
+    uses: ./.github/workflows/CI.yml
+    with:
+      os: ubuntu-latest

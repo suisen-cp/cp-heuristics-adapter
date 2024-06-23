@@ -1,0 +1,13 @@
+name: macos-latest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  macos-latest-build:
+    uses: ./.github/workflows/CI.yml
+    with:
+      os: macos-latest

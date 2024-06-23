@@ -1,6 +1,8 @@
 # cp-heuristics-adapter
 
-[![Python](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/CI.yml/badge.svg)](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/CI.yml)
+[![ubuntu-latest](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/ubuntu-latest.yml/badge.svg)](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/ubuntu-latest.yml)
+[![macos-latest](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/macos-latest.yml/badge.svg)](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/macos-latest.yml)
+[![windows-latest](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/windows-latest.yml/badge.svg)](https://github.com/suisen-cp/cp-heuristics-adapter/actions/workflows/windows-latest.yml)
 
 A tool aimed at automating various operations of AtCoder Heuristics Contest (AHC).
 

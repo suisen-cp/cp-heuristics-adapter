@@ -83,7 +83,16 @@ class TestCpp:
         cpp.compile(source_file)
 
         mock_compile.assert_called_once_with(
-            ["g++", "-O2", "-Wall", "-Wextra", "-Werror", "a/b/c.cpp", "-o", "a/b/c"]
+            [
+                "g++",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                str(Path("a/b/c.cpp")),
+                "-o",
+                str(Path("a/b/c")),
+            ]
         )
         mock_runner.assert_called_once_with(["./a/b/c"])
 
@@ -130,7 +139,7 @@ class TestPython:
         source_file = Path("a/b/c.py")
         python.compile(source_file)
 
-        mock_runner.assert_called_once_with(["python3", "a/b/c.py"])
+        mock_runner.assert_called_once_with(["python3", str(Path("a/b/c.py"))])
 
 
 @pytest.mark.parametrize(

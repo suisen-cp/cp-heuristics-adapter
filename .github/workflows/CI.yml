@@ -1,18 +1,18 @@
 name: Python
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
 
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ inputs.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
