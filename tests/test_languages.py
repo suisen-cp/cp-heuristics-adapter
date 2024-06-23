@@ -94,7 +94,7 @@ class TestCpp:
                 str(Path("a/b/c")),
             ]
         )
-        mock_runner.assert_called_once_with(["./a/b/c"])
+        mock_runner.assert_called_once_with([str(Path("a/b/c").resolve())])
 
 
 class TestPython:
@@ -139,7 +139,9 @@ class TestPython:
         source_file = Path("a/b/c.py")
         python.compile(source_file)
 
-        mock_runner.assert_called_once_with(["python3", str(Path("a/b/c.py"))])
+        mock_runner.assert_called_once_with(
+            ["python3", str(Path("a/b/c.py").resolve())]
+        )
 
 
 @pytest.mark.parametrize(

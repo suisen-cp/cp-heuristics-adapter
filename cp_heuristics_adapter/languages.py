@@ -161,7 +161,7 @@ class Cpp(Language):
         logger.info(f"compiling {source_file} with {compile_cmd}")
         subprocess.check_call(compile_cmd)
 
-        return ProgramRunner([f"./{exec_file}"])
+        return ProgramRunner([f"{exec_file.resolve()}"])
 
     @classmethod
     def suffixes(self) -> list[str]:
@@ -225,7 +225,7 @@ class Python(Language):
             ProgramRunner: ProgramRunner object.
         """
         logger.info("compilation is not needed for python")
-        return ProgramRunner([self.config.python, str(source_file)])
+        return ProgramRunner([self.config.python, str(source_file.resolve())])
 
     @classmethod
     def suffixes(self) -> list[str]:
