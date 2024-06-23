@@ -1,0 +1,10 @@
+[debug]
+# Python interpreter to use in debug mode.
+# python = "python"
+
+# If you are using pyenv, you can specify the python version like this.
+python = "~/.pyenv/shims/python"
+
+[release]
+# Python interpreter to use in release mode.
+python = "python"
